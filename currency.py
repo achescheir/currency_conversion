@@ -1,5 +1,8 @@
 import re
 
+class DifferentCurrencyCodeError(TypeError):
+    pass
+
 class Currency:
     CURRENCY_SYMBOLS = {'$':'USD', '€':'EUR','£':'GBP','¥':'JPY'}
     def __init__(self,*args):
@@ -16,10 +19,17 @@ class Currency:
         return(self.currency_code == other.currency_code and self.value == other.value)
 
     def __add__(self,other):
-        pass
+        if self.currency_code == other.currency_code:
+            return Currency(self.value + other.value,self.currency_code)
+        else:
+            raise DifferentCurrencyCodeError
 
     def __sub__(self,other):
-        pass
+        if self.currency_code == other.currency_code:
+            return Currency(self.value - other.value,self.currency_code)
+        else:
+            raise DifferentCurrencyCodeError
+
 
     def __mul__(self,other):
         pass

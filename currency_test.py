@@ -1,5 +1,5 @@
 import unittest
-from currency import Currency
+from currency import *
 
 class TestCurrency(unittest.TestCase):
 
@@ -14,29 +14,43 @@ class TestCurrency(unittest.TestCase):
     def test_equality(self):
         test_currency1 = Currency(5, 'USD')
         test_currency2 = Currency(5, 'USD')
-        self.assertEqual(test_currency1,test_currency2)
+        self.assertEqual(test_currency1 , test_currency2)
 
     def test_equality_different_value(self):
         test_currency1 = Currency(5, 'USD')
         test_currency2 = Currency(10, 'USD')
-        self.assertNotEqual(test_currency1,test_currency2)
+        self.assertNotEqual(test_currency1 , test_currency2)
 
     def test_equality_different_code(self):
         test_currency1 = Currency(5, 'USD')
         test_currency2 = Currency(5, 'GBP')
-        self.assertNotEqual(test_currency1,test_currency2)
+        self.assertNotEqual(test_currency1 , test_currency2)
 
     def test_comparisons(self):
         pass
 
     def test_addition_same_code(self):
-        pass
+        test_currency1 = Currency(5, 'USD')
+        test_currency2 = Currency(10, 'USD')
+        self.assertEqual(test_currency1 + test_currency2, Currency(15.00,'USD'))
 
     def test_addition_different_code(self):
-        pass
+        test_currency1 = Currency(5, 'USD')
+        test_currency2 = Currency(5, 'GBP')
+        with self.assertRaises(DifferentCurrencyCodeError):
+            test_currency1 + test_currency2
+
 
     def test_subtraction_same_code(self):
-        pass
+        test_currency1 = Currency(5, 'USD')
+        test_currency2 = Currency(10, 'USD')
+        self.assertEqual(test_currency1 - test_currency2, Currency(-5.00,'USD'))
+
+    def test_subtraction_different_code(self):
+        test_currency1 = Currency(5, 'USD')
+        test_currency2 = Currency(5, 'GBP')
+        with self.assertRaises(DifferentCurrencyCodeError):
+            test_currency1 - test_currency2
 
     def test_multiply_int(self):
         pass
