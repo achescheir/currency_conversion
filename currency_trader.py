@@ -23,7 +23,13 @@ class CurrencyTrader:
             possible_trades_in_starting_currency = []
             for each_possible_trade in possible_trades:
                 possible_trades_in_starting_currency.append(each_converter.convert(each_possible_trade,starting_currency_code))
-            best_trade = possible_trades[possible_trades_in_starting_currency.index(max(possible_trades_in_starting_currency))]
+            best_value = max(possible_trades_in_starting_currency)
+            best_index = possible_trades_in_starting_currency.index(best_value)
+            if len([x for x in possible_trades_in_starting_currency if x == best_value]) > 1:
+                for x in possible_trades:
+                    if x == trade_history[-1]:
+                        best_index = possible_trades.index(x)
+            best_trade = possible_trades[best_index]
             trade_history.append(best_trade)
             possible_trades = self.get_all_trades(each_converter,best_trade)
         trade_history.append([x for x in possible_trades if x.currency_code == starting_currency_code][0])
