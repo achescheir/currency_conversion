@@ -27,7 +27,12 @@ class TestCurrency(unittest.TestCase):
         self.assertNotEqual(test_currency1 , test_currency2)
 
     def test_comparisons(self):
-        pass
+        test_currency1 = Currency(5, 'USD')
+        test_currency2 = Currency(10, 'USD')
+        self.assertTrue(test_currency1 < test_currency2)
+        self.assertTrue(test_currency2 > test_currency1)
+        self.assertFalse(test_currency1 > test_currency2)
+        self.assertFalse(test_currency2 < test_currency1)
 
     def test_addition_same_code(self):
         test_currency1 = Currency(5, 'USD')

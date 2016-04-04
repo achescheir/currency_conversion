@@ -28,6 +28,9 @@ class TestCurrencyConverter(unittest.TestCase):
         equal_currency = Currency(Decimal(5) * Decimal(111.3) / Decimal(0.70),'JPY')
         self.assertEqual(test_converter.convert(test_currency,'JPY'),equal_currency)
 
+    def test_get_available_codes(self):
+        test_converter = CurrencyConverter({'USD':1.0,'GBP':0.70,'JPY':111.3})
+        self.assertEqual(sorted(test_converter.get_available_codes()),['GBP','JPY','USD'])
 
     def test_conversion_to_unknown_code(self):
         pass

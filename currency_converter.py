@@ -11,3 +11,6 @@ class CurrencyConverter():
     def convert(self,source_currency, target_code):
         conversion_rate = self.conversion_rates[target_code] / self.conversion_rates[source_currency.currency_code]
         return(Currency(source_currency.value * conversion_rate,target_code))
+
+    def get_available_codes(self):
+        return self.conversion_rates.keys()
