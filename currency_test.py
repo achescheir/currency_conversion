@@ -53,16 +53,22 @@ class TestCurrency(unittest.TestCase):
             test_currency1 - test_currency2
 
     def test_multiply_int(self):
-        pass
+        test_currency = Currency(5,'USD')
+        self.assertEqual(test_currency * 5,Currency(25.00,'USD'))
 
     def test_multiply_float(self):
-        pass
+        test_currency = Currency(5,'USD')
+        self.assertEqual(test_currency * 5.20,Currency(26.00,'USD'))
 
     def test_multiply_currency(self):
-        pass
+        test_currency1 = Currency(5, 'USD')
+        test_currency2 = Currency(10, 'USD')
+        with self.assertRaises(TypeError):
+            test_currency1 * test_currency2
 
     def test_multiply_commutative(self):
-        pass#self.assertTrue.(Currency() * 3 = 3 *Currency())
+        test_currency = Currency(5,'USD')
+        self.assertEqual(test_currency * 3, 3 * test_currency)
 
 if __name__ == '__main__':
     unittest.main()

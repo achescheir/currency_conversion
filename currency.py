@@ -32,4 +32,13 @@ class Currency:
 
 
     def __mul__(self,other):
-        pass
+        if other == float(other):
+            return Currency(self.value * float(other),self.currency_code)
+        else:
+            raise TypeError("Can only multiply by numerics.")
+
+    def __rmul__(self,other):
+        if other == float(other):
+            return Currency(self.value * float(other),self.currency_code)
+        else:
+            raise TypeError("Can only multiply by numerics.")
